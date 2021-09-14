@@ -14,10 +14,19 @@ import java.util.*;
 @Entity()
 public class NoteModel {
     public NoteModel () {
-        TimeZone timeZone = TimeZone.getTimeZone("UTC");
+       /** TimeZone timeZone = TimeZone.getTimeZone("UTC");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
         dateFormat.setTimeZone(timeZone);
-        created = dateFormat.format(new Date());
+        created = dateFormat.format(new Date());**/
+    }
+
+    public NoteModel(long id, String title, String body, String created, String lastModified, String notebook) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.created = created;
+        this.lastModified = lastModified;
+        this.notebook = notebook;
     }
 
 

@@ -5,10 +5,11 @@ import com.dougb.dougbook.repositories.NotesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-@Component(value="notes")
+@Component(value = "notes")
 public class NotesImpl implements Notes {
     @Autowired
     private NotesRepository notesRepository;
@@ -22,11 +23,16 @@ public class NotesImpl implements Notes {
         return notesRepository.retrieveAllNotebooks();
     }
 
-    public List<String> listNotes(String notebook) {
+    public List<NoteModel> listNotes(String notebook) {
         return notesRepository.getNotesByNotebook(notebook);
     }
 
-    public void deleteNote(long id){
+    public List<String> filterNotes(String notebook, String tag) {
+        List<String> filter = notesRepository.getNotesByTag(notebook, tag);
+        return filter;
+    }
+
+    public void deleteNote(long id) {
         notesRepository.deleteById(id);
     }
 }

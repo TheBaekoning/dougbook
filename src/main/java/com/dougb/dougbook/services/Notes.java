@@ -7,6 +7,7 @@ import java.util.List;
 public interface Notes {
     NoteModel createNote(NoteModel note);
     List<String> listNotebooks();
-    List<String> listNotes(String notebook);
+    List<NoteModel> listNotes(String notebook);
+    List<String> filterNotes(String notebook, String tag);
     void deleteNote(long id);
 }

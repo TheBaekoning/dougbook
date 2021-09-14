@@ -34,8 +34,15 @@ public class NotebookController {
     @RequestMapping(value = "/getNotebook/{notebook}",
             method = RequestMethod.GET,
             produces = "application/json")
-    public List<String> getNotebooks(@PathVariable String notebook) {
+    public List<NoteModel> getNotebooks(@PathVariable String notebook) {
         return notes.listNotes(notebook);
+    }
+
+    @RequestMapping(value = "/getNotebook/{notebook}/{tag}",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    public List<String> getNotesByTag(@PathVariable String notebook, @PathVariable String tag){
+        return notes.filterNotes(notebook, tag);
     }
 
     @RequestMapping(value = "/delete/{id}",
