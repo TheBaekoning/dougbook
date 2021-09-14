@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS notebooks;
+
+CREATE TABLE notebooks
+(
+    id  INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(250) NOT NULL,
+    body  VARCHAR(250) NOT NULL,
+    tags  VARCHAR(250) DEFAULT NULL,
+    created VARCHAR(250) NOT NULL,
+    lastModified VARCHAR(250)
+);

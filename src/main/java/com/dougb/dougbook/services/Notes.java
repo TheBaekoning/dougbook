@@ -2,10 +2,8 @@ package com.dougb.dougbook.services;
 
 import com.dougb.dougbook.models.NoteModel;
 import com.dougb.dougbook.models.NotebookModel;
+import org.springframework.stereotype.Service;
 
-public class Notes {
-    public NotebookModel createNote(NoteModel note, NotebookModel currentNotebook) {
-        currentNotebook.notes.add(note);
-        return currentNotebook;
-    }
+public interface Notes {
+    NoteModel createNote(NoteModel note);
 }
