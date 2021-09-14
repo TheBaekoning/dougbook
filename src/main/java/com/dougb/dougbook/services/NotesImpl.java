@@ -20,5 +20,13 @@ public class NotesImpl implements Notes {
 
     public List<String> listNotebooks() {
         return notesRepository.retrieveAllNotebooks();
-    };
+    }
+
+    public List<String> listNotes(String notebook) {
+        return notesRepository.getNotesByNotebook(notebook);
+    }
+
+    public void deleteNote(long id){
+        notesRepository.deleteById(id);
+    }
 }

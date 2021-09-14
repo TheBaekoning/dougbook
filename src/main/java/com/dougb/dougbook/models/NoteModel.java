@@ -21,7 +21,7 @@ public class NoteModel {
     }
 
 
-    @Id @GeneratedValue private int id;
+    @Id @GeneratedValue private long id;
     @Getter @Setter @Column(nullable = false)  private String title;
     @ElementCollection @Column(nullable = false) private List<String> tag = new ArrayList<>();
     @Getter @Setter @Column(nullable = false) private String body;

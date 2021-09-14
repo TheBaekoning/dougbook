@@ -1,17 +1,12 @@
 package com.dougb.dougbook.controllers;
 
 import com.dougb.dougbook.models.NoteModel;
-import com.dougb.dougbook.models.NotebookModel;
 import com.dougb.dougbook.services.Notes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,5 +31,18 @@ public class NotebookController {
         return notes.listNotebooks();
     }
 
+    @RequestMapping(value = "/getNotebook/{notebook}",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    public List<String> getNotebooks(@PathVariable String notebook) {
+        return notes.listNotes(notebook);
+    }
+
+    @RequestMapping(value = "/delete/{id}",
+            method = RequestMethod.DELETE)
+    public ResponseEntity<?> deleteNote(@PathVariable long id) {
+        notes.deleteNote(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
