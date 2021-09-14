@@ -5,6 +5,8 @@ import com.dougb.dougbook.repositories.NotesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 
 @Component(value="notes")
 public class NotesImpl implements Notes {
@@ -15,4 +17,8 @@ public class NotesImpl implements Notes {
     public NoteModel createNote(NoteModel note) {
         return notesRepository.save(note);
     }
+
+    public List<String> listNotebooks() {
+        return notesRepository.retrieveAllNotebooks();
+    };
 }

@@ -3,14 +3,10 @@ package com.dougb.dougbook.models;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
-import java.util.TimeZone;
+import java.util.*;
 
 @Getter
 @Setter
@@ -25,12 +21,14 @@ public class NoteModel {
     }
 
 
-    @Getter @Setter @Id @GeneratedValue private int id;
-    @Getter @Setter private String title;
-    @Getter @Setter private String tag;
-    @Getter @Setter private String body;
-    @Getter private String created;
+    @Id @GeneratedValue private int id;
+    @Getter @Setter @Column(nullable = false)  private String title;
+    @ElementCollection @Column(nullable = false) private List<String> tag = new ArrayList<>();
+    @Getter @Setter @Column(nullable = false) private String body;
+    @Getter private @Column(nullable = false) String created;
     @Getter @Setter private String lastModified;
+    @Column(nullable = false) private String notebook;
+
 
     @Override
     public boolean equals(Object o) {
