@@ -42,6 +42,7 @@ public class NotebookController {
             method = RequestMethod.GET,
             produces = "application/json")
     public List<String> getNotesByTag(@PathVariable String notebook, @PathVariable String tag){
+        System.out.println(notebook + tag);
         return notes.filterNotes(notebook, tag);
     }
 
