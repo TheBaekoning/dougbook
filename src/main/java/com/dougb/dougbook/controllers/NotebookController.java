@@ -30,7 +30,7 @@ public class NotebookController {
             produces = {"application/json"})
     public Object updateNote(@RequestBody NoteModel note) {
         if (notes.updateNote(note) == null)
-            return HttpStatus.BAD_REQUEST;
+            return new ResponseEntity<>("ERROR: Invalid Note ID", HttpStatus.BAD_REQUEST);
         return notes.updateNote(note);
     }
 
