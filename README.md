@@ -15,7 +15,7 @@ The world's most basic and unremarkable notebook system.
 - You will see Spring Boot initialize and start. You will be able to access it via: 
 ```` http://localhost:9090 ````
 
-Swagger is install and can be accessed:
+Swagger is installed and can be accessed:
 ``http://localhost:9090/swagger-ui.html#/notebook-controller``
 if running via the provided docker command.
 
