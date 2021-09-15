@@ -8,6 +8,7 @@ The world's most basic and unremarkable notebook system.
 
 ### Instructions
 - From the terminal navigate to the parent folder /dougbook
+- First build the project:``mvn clean install``
 - From the root directory of /dougbook run :````docker build -t spring-boot-dougbook.jar . ````
 - Once the container is created, run the container: 
 ````docker run -p 9090:8080 spring-boot-dougbook.jar````
