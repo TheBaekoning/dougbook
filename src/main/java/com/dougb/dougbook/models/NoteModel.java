@@ -34,7 +34,7 @@ public class NoteModel {
     @Getter @Setter @Column(nullable = false)  private String title;
     @ElementCollection @Column(nullable = false) private List<String> tag = new ArrayList<>();
     @Getter @Setter @Column(nullable = false) private String body;
-    @Getter private @Column(nullable = false) String created;
+    private @Column(nullable = false, updatable = false) String created;
     @Getter @Setter private String lastModified;
     @Column(nullable = false) private String notebook;
 

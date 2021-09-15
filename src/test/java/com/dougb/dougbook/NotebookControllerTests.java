@@ -4,7 +4,55 @@ import org.junit.jupiter.api.Test;
 
 public class NotebookControllerTests {
     @Test
-    public void PostNote(){
+    public void CreateNoteSuccess(){
+        // arrange
+
+
+        // act
+
+
+
+        // assert
+    }
+
+    @Test
+    public void GetNoteSuccess(){
+        // arrange
+
+
+        // act
+
+
+
+        // assert
+    }
+
+    @Test
+    public void GetNotebookSuccess(){
+        // arrange
+
+
+        // act
+
+
+
+        // assert
+    }
+
+    @Test
+    public void GetListOfNotebookSuccess(){
+        // arrange
+
+
+        // act
+
+
+
+        // assert
+    }
+
+    @Test
+    public void GetNotebookWithTagSuccess(){
         // arrange
 
 
