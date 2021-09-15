@@ -2,6 +2,7 @@ package com.dougb.dougbook.controllers;
 
 import com.dougb.dougbook.models.NoteModel;
 import com.dougb.dougbook.services.Notes;
+import com.dougb.dougbook.utils.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class NotebookController {
             consumes = {"application/json"},
             produces = {"application/json"})
     public NoteModel createNewNote(@RequestBody NoteModel note) {
+        note.setCreated(Time.setCurrentTime());
         return notes.createNote(note);
     }
 
@@ -39,9 +41,11 @@ public class NotebookController {
             consumes = {"application/json"},
             produces = {"application/json"})
     public Object updateNote(@RequestBody NoteModel note) {
-        if (notes.updateNote(note) == null)
+        note.setLastModified(Time.setCurrentTime());
+        NoteModel updateNote = notes.updateNote(note);
+        if (updateNote == null)
             return new ResponseEntity<>("ERROR: Invalid Note ID", HttpStatus.BAD_REQUEST);
-        return notes.updateNote(note);
+        return updateNote;
     }
 
     /**

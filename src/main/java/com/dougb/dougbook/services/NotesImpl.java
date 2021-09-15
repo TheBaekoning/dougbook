@@ -36,9 +36,14 @@ public class NotesImpl implements Notes {
     }
 
     public NoteModel updateNote(NoteModel note){
-        if(notesRepository.findById(note.getId()).isEmpty())
+        Optional<NoteModel> lookupNote = notesRepository.findById(note.getId());
+        if(lookupNote.isEmpty())
         return null;
-        return notesRepository.save(note);
+
+        String created = lookupNote.get().getCreated();
+        NoteModel result = notesRepository.save(note);
+        result.setCreated(created);
+        return result;
     }
 
     public void deleteNote(long id) {

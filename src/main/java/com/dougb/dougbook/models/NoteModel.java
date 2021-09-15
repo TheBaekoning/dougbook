@@ -1,5 +1,7 @@
 package com.dougb.dougbook.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -14,10 +16,6 @@ import java.util.*;
 @Entity()
 public class NoteModel {
     public NoteModel () {
-       /** TimeZone timeZone = TimeZone.getTimeZone("UTC");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
-        dateFormat.setTimeZone(timeZone);
-        created = dateFormat.format(new Date());**/
     }
 
     public NoteModel(long id, String title, String body, String created, String lastModified, String notebook) {
@@ -34,8 +32,8 @@ public class NoteModel {
     @Getter @Setter @Column(nullable = false)  private String title;
     @ElementCollection @Column(nullable = false) private List<String> tag = new ArrayList<>();
     @Getter @Setter @Column(nullable = false) private String body;
-    private @Column(nullable = false, updatable = false) String created;
-    @Getter @Setter private String lastModified;
+    private @JsonProperty(access = JsonProperty.Access.READ_ONLY) @Column(nullable = false, updatable = false) String created;
+    @Getter @Setter @JsonProperty(access = JsonProperty.Access.READ_ONLY) private String lastModified;
     @Column(nullable = false) private String notebook;
 
 
