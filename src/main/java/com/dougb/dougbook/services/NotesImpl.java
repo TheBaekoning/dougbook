@@ -5,8 +5,8 @@ import com.dougb.dougbook.repositories.NotesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Component(value = "notes")
@@ -27,9 +27,18 @@ public class NotesImpl implements Notes {
         return notesRepository.getNotesByNotebook(notebook);
     }
 
-    public List<String> filterNotes(String notebook, String tag) {
-        List<String> filter = notesRepository.getNotesByTag(notebook, tag);
-        return filter;
+    public List<NoteModel> filterNotes(String notebook, String tag) {
+        return notesRepository.getNotesByTag(notebook, tag);
+    }
+
+    public NoteModel retrieveNoteById(String id){
+        return notesRepository.getNoteById(id);
+    }
+
+    public NoteModel updateNote(NoteModel note){
+        if(notesRepository.findById(note.getId()).isEmpty())
+        return null;
+        return notesRepository.save(note);
     }
 
     public void deleteNote(long id) {

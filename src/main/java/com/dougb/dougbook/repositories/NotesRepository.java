@@ -17,5 +17,8 @@ public interface NotesRepository extends JpaRepository<NoteModel, Long> {
     List<NoteModel> getNotesByNotebook(@Param("notebookName") String notebookName);
 
     @Query(value = "SELECT DISTINCT * FROM NOTE_MODEL JOIN NOTE_MODEL_TAG WHERE NOTE_MODEL_TAG.NOTE_MODEL_ID = id AND NOTEBOOK = ?1 AND TAG = ?2", nativeQuery = true)
-    List<String> getNotesByTag(String notebookName,  String tagName);
+    List<NoteModel> getNotesByTag(String notebookName,  String tagName);
+
+    @Query(value = "SELECT * FROM NOTE_MODEL WHERE ID = ?1", nativeQuery = true)
+    NoteModel getNoteById(String id);
 }

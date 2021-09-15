@@ -8,6 +8,8 @@ public interface Notes {
     NoteModel createNote(NoteModel note);
     List<String> listNotebooks();
     List<NoteModel> listNotes(String notebook);
-    List<String> filterNotes(String notebook, String tag);
+    List<NoteModel> filterNotes(String notebook, String tag);
+    NoteModel retrieveNoteById(String id);
+    NoteModel updateNote(NoteModel note);
     void deleteNote(long id);
 }

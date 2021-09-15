@@ -16,12 +16,22 @@ public class NotebookController {
     @Autowired
     private Notes notes;
 
-    @RequestMapping(value = "/create",
+    @RequestMapping(value = "/createNote",
             method = RequestMethod.POST,
             consumes = {"application/json"},
             produces = {"application/json"})
     public NoteModel createNewNote(@RequestBody NoteModel note) {
         return notes.createNote(note);
+    }
+
+    @RequestMapping(value = "/updateNote",
+            method = RequestMethod.PUT,
+            consumes = {"application/json"},
+            produces = {"application/json"})
+    public Object updateNote(@RequestBody NoteModel note) {
+        if (notes.updateNote(note) == null)
+            return HttpStatus.BAD_REQUEST;
+        return notes.updateNote(note);
     }
 
     @RequestMapping(value = "/getNotebooks",
@@ -41,9 +51,15 @@ public class NotebookController {
     @RequestMapping(value = "/getNotebook/{notebook}/{tag}",
             method = RequestMethod.GET,
             produces = "application/json")
-    public List<String> getNotesByTag(@PathVariable String notebook, @PathVariable String tag){
-        System.out.println(notebook + tag);
+    public List<NoteModel> getNotesByTag(@PathVariable String notebook, @PathVariable String tag){
         return notes.filterNotes(notebook, tag);
+    }
+
+    @RequestMapping(value = "/getNote/{id}",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    public NoteModel getNoteById(@PathVariable String id){
+        return notes.retrieveNoteById(id);
     }
 
     @RequestMapping(value = "/delete/{id}",
@@ -52,5 +68,7 @@ public class NotebookController {
         notes.deleteNote(id);
         return ResponseEntity.noContent().build();
     }
+
+
 
 }
