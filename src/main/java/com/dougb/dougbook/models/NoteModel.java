@@ -28,13 +28,23 @@ public class NoteModel {
     }
 
 
-    @Column(updatable = false) @Id @GeneratedValue private long id;
-    @Getter @Setter private String title;
-    @ElementCollection private List<String> tag = new ArrayList<>();
-    @Getter @Setter private String body;
-    private @JsonProperty(access = JsonProperty.Access.READ_ONLY) @Column(nullable = false, updatable = false) String created;
-    @Getter @Setter @JsonProperty(access = JsonProperty.Access.READ_ONLY) private String lastModified;
-    @Column(nullable = false) private String notebook;
+    @Column(updatable = false) @Id @GeneratedValue
+    private long id;
+
+    private String title;
+    @ElementCollection
+    private List<String> tag = new ArrayList<>();
+
+    private String body;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY) @Column(nullable = false, updatable = false)
+    private String created;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String lastModified;
+
+    @Column(nullable = false) private
+    String notebook;
 
 
     @Override
