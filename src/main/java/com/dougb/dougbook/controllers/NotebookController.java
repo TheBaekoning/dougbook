@@ -3,6 +3,7 @@ package com.dougb.dougbook.controllers;
 import com.dougb.dougbook.models.NoteModel;
 import com.dougb.dougbook.services.Notes;
 import com.dougb.dougbook.utils.Time;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class NotebookController {
             method = RequestMethod.POST,
             consumes = {"application/json"},
             produces = {"application/json"})
+    @Operation(summary = "Creates a new note")
     public NoteModel createNewNote(@RequestBody NoteModel note) {
         note.setCreated(Time.setCurrentTime());
         return notes.createNote(note);
@@ -40,6 +42,7 @@ public class NotebookController {
             method = RequestMethod.PUT,
             consumes = {"application/json"},
             produces = {"application/json"})
+    @Operation(summary = "Updates an existing note.")
     public Object updateNote(@RequestBody NoteModel note) {
         note.setLastModified(Time.setCurrentTime());
         NoteModel updateNote = notes.updateNote(note);
@@ -55,6 +58,7 @@ public class NotebookController {
     @RequestMapping(value = "/getNotebooks",
             method = RequestMethod.GET,
             produces = "application/json")
+    @Operation(summary = "Gets a list of notebooks that currently exists")
     public List<String> getNotebooks() {
         return notes.listNotebooks();
     }
@@ -67,6 +71,7 @@ public class NotebookController {
     @RequestMapping(value = "/getNotebook/{notebook}",
             method = RequestMethod.GET,
             produces = "application/json")
+    @Operation(summary = "Gets all notes within a notebook")
     public List<NoteModel> getNotebook(@PathVariable String notebook) {
         return notes.listNotes(notebook);
     }
@@ -80,6 +85,7 @@ public class NotebookController {
     @RequestMapping(value = "/getNotebook/{notebook}/{tag}",
             method = RequestMethod.GET,
             produces = "application/json")
+    @Operation(summary = "Filters notes by tag of a given notebook")
     public List<NoteModel> getNotesByTag(@PathVariable String notebook, @PathVariable String tag) {
         return notes.filterNotes(notebook, tag);
     }
@@ -92,6 +98,7 @@ public class NotebookController {
     @RequestMapping(value = "/getNote/{id}",
             method = RequestMethod.GET,
             produces = "application/json")
+    @Operation(summary = "Retrieves a note")
     public NoteModel getNoteById(@PathVariable String id) {
         return notes.retrieveNoteById(id);
     }
@@ -103,6 +110,7 @@ public class NotebookController {
      */
     @RequestMapping(value = "/delete/{id}",
             method = RequestMethod.DELETE)
+    @Operation(summary = "Deletes a note")
     public ResponseEntity<?> deleteNote(@PathVariable long id) {
         notes.deleteNote(id);
         return ResponseEntity.noContent().build();
