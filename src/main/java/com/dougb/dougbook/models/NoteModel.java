@@ -29,9 +29,9 @@ public class NoteModel {
 
 
     @Column(updatable = false) @Id @GeneratedValue private long id;
-    @Getter @Setter @Column(nullable = false)  private String title;
-    @ElementCollection @Column(nullable = false) private List<String> tag = new ArrayList<>();
-    @Getter @Setter @Column(nullable = false) private String body;
+    @Getter @Setter private String title;
+    @ElementCollection private List<String> tag = new ArrayList<>();
+    @Getter @Setter private String body;
     private @JsonProperty(access = JsonProperty.Access.READ_ONLY) @Column(nullable = false, updatable = false) String created;
     @Getter @Setter @JsonProperty(access = JsonProperty.Access.READ_ONLY) private String lastModified;
     @Column(nullable = false) private String notebook;

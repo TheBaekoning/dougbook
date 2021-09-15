@@ -3,13 +3,13 @@ package com.dougb.dougbook.services;
 import com.dougb.dougbook.models.NoteModel;
 import com.dougb.dougbook.repositories.NotesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 
-@Component(value = "notes")
+@Service
 public class NotesImpl implements Notes {
     @Autowired
     private NotesRepository notesRepository;

@@ -67,7 +67,7 @@ public class NotebookController {
     @RequestMapping(value = "/getNotebook/{notebook}",
             method = RequestMethod.GET,
             produces = "application/json")
-    public List<NoteModel> getNotebooks(@PathVariable String notebook) {
+    public List<NoteModel> getNotebook(@PathVariable String notebook) {
         return notes.listNotes(notebook);
     }
 
